@@ -1,1 +1,3 @@
 # rush
+
+# Weber State University
