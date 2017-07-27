@@ -5,8 +5,6 @@
 This application has been developed by the students of Group 5 in Prof Ted Cowan's CS 3750 Summer semester at Weber State University. The goal of this application is to facilitate enhanced learning techniques for the students in the Weber State Respiratory Therapy Department. 
 This site will have users that can log in under either the role of admin (faculty) or as students. Once logged in, the faculty members will be able to generate forms with customize profiles that can be bundled into assignments which will then be made available to the students who can view the assignments and export them to PDFs. Faculty members will also have the capability to create simulated patients and give the descriptive conditions that students can address on their assignments. 
 
-# This repo is for an application being built to assist the faculty and the students in the Weber State Respiratory Therapy Department
-
 # How is the application set up?
 
 
