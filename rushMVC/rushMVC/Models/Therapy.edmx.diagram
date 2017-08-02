@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9f563f34fb2d484eb735a44124da01a3" Name="Diagram1">
+        <EntityTypeShape EntityType="TherapyModel.Assignment" Width="1.5" PointX="1.5" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TherapyModel.Form_Assignment" Width="1.5" PointX="3" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TherapyModel.Form_Template" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TherapyModel.Input_Type" Width="1.5" PointX="1.5" PointY="18.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TherapyModel.Medical_History" Width="1.5" PointX="3" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TherapyModel.Patient" Width="1.5" PointX="0.75" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TherapyModel.Question" Width="1.5" PointX="1.5" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="TherapyModel.User" Width="1.5" PointX="0.75" PointY="21.25" IsExpanded="true" />
+        <AssociationConnector Association="TherapyModel.FK_Assignment_Assignment_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="TherapyModel.FK_Form_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="TherapyModel.FK_Patient_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="TherapyModel.FK_Question_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="TherapyModel.FK_User_User_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="TherapyModel.FK_Questions_Question_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="TherapyModel.FK_Input_Type_Type" ManuallyRouted="false" />
+        <AssociationConnector Association="TherapyModel.FK_Patient_Patinet_ID" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
