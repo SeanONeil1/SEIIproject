@@ -27,7 +27,7 @@ namespace rushMVC.Controllers
                     {
                         Session["UserID"] = obj.User_ID.ToString();
                         Session["UserName"] = obj.User_Name.ToString();
-                        return RedirectToAction("About");
+                        return RedirectToAction("Home/About");
                     }
                 }
             }
@@ -42,7 +42,7 @@ namespace rushMVC.Controllers
             }
             else
             {
-                return RedirectToAction("Login");
+                return RedirectToAction("Home/About");
             }
         }
     }

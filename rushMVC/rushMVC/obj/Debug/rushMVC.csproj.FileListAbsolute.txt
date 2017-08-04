@@ -135,3 +135,4 @@ C:\Users\ianVB\Documents\GitHub\rushMVC\rushMVC\rushMVC\bin\Microsoft.AI.Depende
 C:\Users\ianVB\Documents\GitHub\rushMVC\rushMVC\rushMVC\bin\Microsoft.AI.ServerTelemetryChannel.xml
 C:\Users\ianVB\Documents\GitHub\rushMVC\rushMVC\rushMVC\bin\Microsoft.AI.WindowsServer.xml
 C:\Users\ianVB\Documents\GitHub\rushMVC\rushMVC\rushMVC\bin\Microsoft.AI.Web.xml
+C:\Users\ianVB\Documents\GitHub\rushMVC\rushMVC\rushMVC\obj\Debug\rushMVC.csprojResolveAssemblyReference.cache
