@@ -1,0 +1,256 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TherapyModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Assignment">
+    <Key>
+      <PropertyRef Name="Assignment_ID" />
+    </Key>
+    <Property Name="Assignment_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Assignment_Desc" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Active" Type="Boolean" />
+    <NavigationProperty Name="Form_Template" Relationship="Self.FK_Assignment_Assignment_ID" FromRole="Assignment" ToRole="Form_Template" />
+  </EntityType>
+  <EntityType Name="Form_Assignment">
+    <Key>
+      <PropertyRef Name="Form_Assingment_ID" />
+    </Key>
+    <Property Name="Form_Assingment_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="User_ID" Type="Int32" Nullable="false" />
+    <Property Name="Form_ID" Type="Int32" Nullable="false" />
+    <Property Name="Question_ID" Type="Int32" Nullable="false" />
+    <Property Name="Patient_ID" Type="Int32" Nullable="false" />
+    <Property Name="Answer" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Date_Time" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="ACTIVE" Type="Boolean" />
+    <NavigationProperty Name="Form_Template" Relationship="Self.FK_Form_ID" FromRole="Form_Assignment" ToRole="Form_Template" />
+    <NavigationProperty Name="Patient" Relationship="Self.FK_Patient_ID" FromRole="Form_Assignment" ToRole="Patient" />
+    <NavigationProperty Name="Question" Relationship="Self.FK_Question_ID" FromRole="Form_Assignment" ToRole="Questions" />
+    <NavigationProperty Name="User" Relationship="Self.FK_User_User_ID" FromRole="Form_Assignment" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Form_Template">
+    <Key>
+      <PropertyRef Name="Form_ID" />
+    </Key>
+    <Property Name="Form_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Form_Desc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Question_ID" Type="Int32" />
+    <Property Name="Assignment_ID" Type="Int32" />
+    <Property Name="Active" Type="Boolean" />
+    <NavigationProperty Name="Assignment" Relationship="Self.FK_Assignment_Assignment_ID" FromRole="Form_Template" ToRole="Assignment" />
+    <NavigationProperty Name="Form_Assignment" Relationship="Self.FK_Form_ID" FromRole="Form_Template" ToRole="Form_Assignment" />
+    <NavigationProperty Name="Question" Relationship="Self.FK_Questions_Question_ID" FromRole="Form_Template" ToRole="Questions" />
+  </EntityType>
+  <EntityType Name="Input_Type">
+    <Key>
+      <PropertyRef Name="Type" />
+    </Key>
+    <Property Name="Type" Type="Int32" Nullable="false" />
+    <Property Name="Input_Type_Desc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Active" Type="Boolean" />
+    <NavigationProperty Name="Questions" Relationship="Self.FK_Input_Type_Type" FromRole="Input_Type" ToRole="Questions" />
+  </EntityType>
+  <EntityType Name="Medical_History">
+    <Key>
+      <PropertyRef Name="Medical_ID" />
+    </Key>
+    <Property Name="Medical_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Patient_ID" Type="Int32" Nullable="false" />
+    <Property Name="DESCRIPTION" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="DATE_TIME" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Patient" Relationship="Self.FK_Patient_Patinet_ID" FromRole="Medical_History" ToRole="Patient" />
+  </EntityType>
+  <EntityType Name="Patient">
+    <Key>
+      <PropertyRef Name="Patient_Id" />
+    </Key>
+    <Property Name="Patient_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="First_Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Last_Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Middle_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Date_Of_Birth" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Gender" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Phone_Number" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Condition" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Form_Assignment" Relationship="Self.FK_Patient_ID" FromRole="Patient" ToRole="Form_Assignment" />
+    <NavigationProperty Name="Medical_History" Relationship="Self.FK_Patient_Patinet_ID" FromRole="Patient" ToRole="Medical_History" />
+  </EntityType>
+  <EntityType Name="Question">
+    <Key>
+      <PropertyRef Name="Question_ID" />
+    </Key>
+    <Property Name="Question_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Question1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Type" Type="Int32" Nullable="false" />
+    <Property Name="Input_Option" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Active" Type="Boolean" />
+    <NavigationProperty Name="Form_Assignment" Relationship="Self.FK_Question_ID" FromRole="Questions" ToRole="Form_Assignment" />
+    <NavigationProperty Name="Form_Template" Relationship="Self.FK_Questions_Question_ID" FromRole="Questions" ToRole="Form_Template" />
+    <NavigationProperty Name="Input_Type" Relationship="Self.FK_Input_Type_Type" FromRole="Questions" ToRole="Input_Type" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="User_ID" />
+    </Key>
+    <Property Name="User_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="User_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="First_Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Last_Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Admin" Type="Boolean" />
+    <Property Name="Password_Reset" Type="Boolean" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Course_Number" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Active" Type="Boolean" />
+    <NavigationProperty Name="Form_Assignment" Relationship="Self.FK_User_User_ID" FromRole="User" ToRole="Form_Assignment" />
+  </EntityType>
+  <Association Name="FK_Assignment_Assignment_ID">
+    <End Role="Assignment" Type="Self.Assignment" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Form_Template" Type="Self.Form_Template" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Assignment">
+        <PropertyRef Name="Assignment_ID" />
+      </Principal>
+      <Dependent Role="Form_Template">
+        <PropertyRef Name="Assignment_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Form_ID">
+    <End Role="Form_Template" Type="Self.Form_Template" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Form_Assignment" Type="Self.Form_Assignment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Form_Template">
+        <PropertyRef Name="Form_ID" />
+      </Principal>
+      <Dependent Role="Form_Assignment">
+        <PropertyRef Name="Form_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Patient_ID">
+    <End Role="Patient" Type="Self.Patient" Multiplicity="1" />
+    <End Role="Form_Assignment" Type="Self.Form_Assignment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Patient">
+        <PropertyRef Name="Patient_Id" />
+      </Principal>
+      <Dependent Role="Form_Assignment">
+        <PropertyRef Name="Patient_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Question_ID">
+    <End Role="Questions" Type="Self.Question" Multiplicity="1" />
+    <End Role="Form_Assignment" Type="Self.Form_Assignment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Questions">
+        <PropertyRef Name="Question_ID" />
+      </Principal>
+      <Dependent Role="Form_Assignment">
+        <PropertyRef Name="Question_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_User_ID">
+    <End Role="User" Type="Self.User" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Form_Assignment" Type="Self.Form_Assignment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="User_ID" />
+      </Principal>
+      <Dependent Role="Form_Assignment">
+        <PropertyRef Name="User_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Questions_Question_ID">
+    <End Role="Questions" Type="Self.Question" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Form_Template" Type="Self.Form_Template" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Questions">
+        <PropertyRef Name="Question_ID" />
+      </Principal>
+      <Dependent Role="Form_Template">
+        <PropertyRef Name="Question_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Input_Type_Type">
+    <End Role="Input_Type" Type="Self.Input_Type" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Questions" Type="Self.Question" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Input_Type">
+        <PropertyRef Name="Type" />
+      </Principal>
+      <Dependent Role="Questions">
+        <PropertyRef Name="Type" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Patient_Patinet_ID">
+    <End Role="Patient" Type="Self.Patient" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Medical_History" Type="Self.Medical_History" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Patient">
+        <PropertyRef Name="Patient_Id" />
+      </Principal>
+      <Dependent Role="Medical_History">
+        <PropertyRef Name="Patient_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TherapyEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Assignments" EntityType="Self.Assignment" />
+    <EntitySet Name="Form_Assignment" EntityType="Self.Form_Assignment" />
+    <EntitySet Name="Form_Template" EntityType="Self.Form_Template" />
+    <EntitySet Name="Input_Type" EntityType="Self.Input_Type" />
+    <EntitySet Name="Medical_History" EntityType="Self.Medical_History" />
+    <EntitySet Name="Patients" EntityType="Self.Patient" />
+    <EntitySet Name="Questions" EntityType="Self.Question" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <AssociationSet Name="FK_Assignment_Assignment_ID" Association="Self.FK_Assignment_Assignment_ID">
+      <End Role="Assignment" EntitySet="Assignments" />
+      <End Role="Form_Template" EntitySet="Form_Template" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Form_ID" Association="Self.FK_Form_ID">
+      <End Role="Form_Template" EntitySet="Form_Template" />
+      <End Role="Form_Assignment" EntitySet="Form_Assignment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Patient_ID" Association="Self.FK_Patient_ID">
+      <End Role="Patient" EntitySet="Patients" />
+      <End Role="Form_Assignment" EntitySet="Form_Assignment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Question_ID" Association="Self.FK_Question_ID">
+      <End Role="Questions" EntitySet="Questions" />
+      <End Role="Form_Assignment" EntitySet="Form_Assignment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_User_ID" Association="Self.FK_User_User_ID">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Form_Assignment" EntitySet="Form_Assignment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Questions_Question_ID" Association="Self.FK_Questions_Question_ID">
+      <End Role="Questions" EntitySet="Questions" />
+      <End Role="Form_Template" EntitySet="Form_Template" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Input_Type_Type" Association="Self.FK_Input_Type_Type">
+      <End Role="Input_Type" EntitySet="Input_Type" />
+      <End Role="Questions" EntitySet="Questions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Patient_Patinet_ID" Association="Self.FK_Patient_Patinet_ID">
+      <End Role="Patient" EntitySet="Patients" />
+      <End Role="Medical_History" EntitySet="Medical_History" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

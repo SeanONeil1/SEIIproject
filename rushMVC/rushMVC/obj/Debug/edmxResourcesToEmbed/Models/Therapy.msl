@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TherapyModelStoreContainer" CdmEntityContainer="TherapyEntities">
+    <EntitySetMapping Name="Assignments">
+      <EntityTypeMapping TypeName="TherapyModel.Assignment">
+        <MappingFragment StoreEntitySet="Assignment">
+          <ScalarProperty Name="Assignment_ID" ColumnName="Assignment_ID" />
+          <ScalarProperty Name="Assignment_Desc" ColumnName="Assignment_Desc" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Form_Assignment">
+      <EntityTypeMapping TypeName="TherapyModel.Form_Assignment">
+        <MappingFragment StoreEntitySet="Form_Assignment">
+          <ScalarProperty Name="Form_Assingment_ID" ColumnName="Form_Assingment_ID" />
+          <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+          <ScalarProperty Name="Form_ID" ColumnName="Form_ID" />
+          <ScalarProperty Name="Question_ID" ColumnName="Question_ID" />
+          <ScalarProperty Name="Patient_ID" ColumnName="Patient_ID" />
+          <ScalarProperty Name="Answer" ColumnName="Answer" />
+          <ScalarProperty Name="Date_Time" ColumnName="Date_Time" />
+          <ScalarProperty Name="ACTIVE" ColumnName="ACTIVE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Form_Template">
+      <EntityTypeMapping TypeName="TherapyModel.Form_Template">
+        <MappingFragment StoreEntitySet="Form_Template">
+          <ScalarProperty Name="Form_ID" ColumnName="Form_ID" />
+          <ScalarProperty Name="Form_Desc" ColumnName="Form_Desc" />
+          <ScalarProperty Name="Question_ID" ColumnName="Question_ID" />
+          <ScalarProperty Name="Assignment_ID" ColumnName="Assignment_ID" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Input_Type">
+      <EntityTypeMapping TypeName="TherapyModel.Input_Type">
+        <MappingFragment StoreEntitySet="Input_Type">
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Input_Type_Desc" ColumnName="Input_Type_Desc" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Medical_History">
+      <EntityTypeMapping TypeName="TherapyModel.Medical_History">
+        <MappingFragment StoreEntitySet="Medical_History">
+          <ScalarProperty Name="Medical_ID" ColumnName="Medical_ID" />
+          <ScalarProperty Name="Patient_ID" ColumnName="Patient_ID" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="DATE_TIME" ColumnName="DATE_TIME" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Patients">
+      <EntityTypeMapping TypeName="TherapyModel.Patient">
+        <MappingFragment StoreEntitySet="Patient">
+          <ScalarProperty Name="Patient_Id" ColumnName="Patient_Id" />
+          <ScalarProperty Name="First_Name" ColumnName="First_Name" />
+          <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />
+          <ScalarProperty Name="Middle_Name" ColumnName="Middle_Name" />
+          <ScalarProperty Name="Date_Of_Birth" ColumnName="Date_Of_Birth" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="Phone_Number" ColumnName="Phone_Number" />
+          <ScalarProperty Name="Condition" ColumnName="Condition" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Questions">
+      <EntityTypeMapping TypeName="TherapyModel.Question">
+        <MappingFragment StoreEntitySet="Questions">
+          <ScalarProperty Name="Question_ID" ColumnName="Question_ID" />
+          <ScalarProperty Name="Question1" ColumnName="Question" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Input_Option" ColumnName="Input_Option" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="TherapyModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="User_Name" ColumnName="User_Name" />
+          <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+          <ScalarProperty Name="First_Name" ColumnName="First_Name" />
+          <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Admin" ColumnName="Admin" />
+          <ScalarProperty Name="Password_Reset" ColumnName="Password_Reset" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Course_Number" ColumnName="Course_Number" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
