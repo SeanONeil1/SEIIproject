@@ -154,15 +154,45 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Assignment.cs" />
-    <Compile Include="Models\Form_Assignment.cs" />
-    <Compile Include="Models\Form_Template.cs" />
-    <Compile Include="Models\Input_Type.cs" />
-    <Compile Include="Models\Medical_History.cs" />
-    <Compile Include="Models\Model1.cs" />
-    <Compile Include="Models\Patient.cs" />
-    <Compile Include="Models\Question.cs" />
-    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\Assignment.cs">
+      <DependentUpon>Therapy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Form_Assignment.cs">
+      <DependentUpon>Therapy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Form_Template.cs">
+      <DependentUpon>Therapy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Input_Type.cs">
+      <DependentUpon>Therapy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Medical_History.cs">
+      <DependentUpon>Therapy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Patient.cs">
+      <DependentUpon>Therapy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Question.cs">
+      <DependentUpon>Therapy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Therapy.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Therapy.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Therapy.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Therapy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Therapy.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Therapy.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\User.cs">
+      <DependentUpon>Therapy.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -172,10 +202,27 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Models\Therapy.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Therapy.edmx</DependentUpon>
+      <LastGenOutput>Therapy.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Therapy.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Therapy.edmx</DependentUpon>
+      <LastGenOutput>Therapy.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <EntityDeploy Include="Models\Therapy.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Therapy.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Therapy.edmx.diagram">
+      <DependentUpon>Therapy.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -202,8 +249,9 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Home\Assignment.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
-    <Content Include="Views\Login\UserDashBoard.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

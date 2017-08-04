@@ -1,0 +1,240 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TherapyModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Assignment">
+    <Key>
+      <PropertyRef Name="Assignment_ID" />
+    </Key>
+    <Property Name="Assignment_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Assignment_Desc" Type="varchar" MaxLength="100" />
+    <Property Name="Active" Type="bit" />
+  </EntityType>
+  <EntityType Name="Form_Assignment">
+    <Key>
+      <PropertyRef Name="Form_Assingment_ID" />
+    </Key>
+    <Property Name="Form_Assingment_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="User_ID" Type="int" Nullable="false" />
+    <Property Name="Form_ID" Type="int" Nullable="false" />
+    <Property Name="Question_ID" Type="int" Nullable="false" />
+    <Property Name="Patient_ID" Type="int" Nullable="false" />
+    <Property Name="Answer" Type="varchar" MaxLength="50" />
+    <Property Name="Date_Time" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+    <Property Name="ACTIVE" Type="bit" />
+  </EntityType>
+  <EntityType Name="Form_Template">
+    <Key>
+      <PropertyRef Name="Form_ID" />
+    </Key>
+    <Property Name="Form_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Form_Desc" Type="varchar" MaxLength="50" />
+    <Property Name="Question_ID" Type="int" />
+    <Property Name="Assignment_ID" Type="int" />
+    <Property Name="Active" Type="bit" />
+  </EntityType>
+  <EntityType Name="Input_Type">
+    <Key>
+      <PropertyRef Name="Type" />
+    </Key>
+    <Property Name="Type" Type="int" Nullable="false" />
+    <Property Name="Input_Type_Desc" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Active" Type="bit" />
+  </EntityType>
+  <EntityType Name="Medical_History">
+    <Key>
+      <PropertyRef Name="Medical_ID" />
+    </Key>
+    <Property Name="Medical_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Patient_ID" Type="int" Nullable="false" />
+    <Property Name="DESCRIPTION" Type="varchar" MaxLength="100" />
+    <Property Name="DATE_TIME" Type="date" />
+  </EntityType>
+  <EntityType Name="Patient">
+    <Key>
+      <PropertyRef Name="Patient_Id" />
+    </Key>
+    <Property Name="Patient_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="First_Name" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="Last_Name" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="Middle_Name" Type="varchar" MaxLength="255" />
+    <Property Name="Date_Of_Birth" Type="date" Nullable="false" />
+    <Property Name="Gender" Type="varchar" MaxLength="10" />
+    <Property Name="Phone_Number" Type="varchar" MaxLength="20" />
+    <Property Name="Condition" Type="varchar" MaxLength="100" />
+    <Property Name="Description" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Questions">
+    <Key>
+      <PropertyRef Name="Question_ID" />
+    </Key>
+    <Property Name="Question_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Question" Type="varchar" MaxLength="50" />
+    <Property Name="Type" Type="int" Nullable="false" />
+    <Property Name="Input_Option" Type="varchar" MaxLength="50" />
+    <Property Name="Active" Type="bit" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="User_ID" />
+    </Key>
+    <Property Name="User_Name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="User_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="First_Name" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="Last_Name" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Admin" Type="bit" />
+    <Property Name="Password_Reset" Type="bit" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="Course_Number" Type="varchar" MaxLength="20" />
+    <Property Name="Active" Type="bit" />
+  </EntityType>
+  <Association Name="FK_Assignment_Assignment_ID">
+    <End Role="Assignment" Type="Self.Assignment" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Form_Template" Type="Self.Form_Template" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Assignment">
+        <PropertyRef Name="Assignment_ID" />
+      </Principal>
+      <Dependent Role="Form_Template">
+        <PropertyRef Name="Assignment_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Form_ID">
+    <End Role="Form_Template" Type="Self.Form_Template" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Form_Assignment" Type="Self.Form_Assignment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Form_Template">
+        <PropertyRef Name="Form_ID" />
+      </Principal>
+      <Dependent Role="Form_Assignment">
+        <PropertyRef Name="Form_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Input_Type_Type">
+    <End Role="Input_Type" Type="Self.Input_Type" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Questions" Type="Self.Questions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Input_Type">
+        <PropertyRef Name="Type" />
+      </Principal>
+      <Dependent Role="Questions">
+        <PropertyRef Name="Type" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Patient_ID">
+    <End Role="Patient" Type="Self.Patient" Multiplicity="1" />
+    <End Role="Form_Assignment" Type="Self.Form_Assignment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Patient">
+        <PropertyRef Name="Patient_Id" />
+      </Principal>
+      <Dependent Role="Form_Assignment">
+        <PropertyRef Name="Patient_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Patient_Patinet_ID">
+    <End Role="Patient" Type="Self.Patient" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Medical_History" Type="Self.Medical_History" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Patient">
+        <PropertyRef Name="Patient_Id" />
+      </Principal>
+      <Dependent Role="Medical_History">
+        <PropertyRef Name="Patient_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Question_ID">
+    <End Role="Questions" Type="Self.Questions" Multiplicity="1" />
+    <End Role="Form_Assignment" Type="Self.Form_Assignment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Questions">
+        <PropertyRef Name="Question_ID" />
+      </Principal>
+      <Dependent Role="Form_Assignment">
+        <PropertyRef Name="Question_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Questions_Question_ID">
+    <End Role="Questions" Type="Self.Questions" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Form_Template" Type="Self.Form_Template" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Questions">
+        <PropertyRef Name="Question_ID" />
+      </Principal>
+      <Dependent Role="Form_Template">
+        <PropertyRef Name="Question_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_User_ID">
+    <End Role="User" Type="Self.User" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Form_Assignment" Type="Self.Form_Assignment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="User_ID" />
+      </Principal>
+      <Dependent Role="Form_Assignment">
+        <PropertyRef Name="User_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TherapyModelStoreContainer">
+    <EntitySet Name="Assignment" EntityType="Self.Assignment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Form_Assignment" EntityType="Self.Form_Assignment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Form_Template" EntityType="Self.Form_Template" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Input_Type" EntityType="Self.Input_Type" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Medical_History" EntityType="Self.Medical_History" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Patient" EntityType="Self.Patient" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Questions" EntityType="Self.Questions" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Assignment_Assignment_ID" Association="Self.FK_Assignment_Assignment_ID">
+      <End Role="Assignment" EntitySet="Assignment" />
+      <End Role="Form_Template" EntitySet="Form_Template" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Form_ID" Association="Self.FK_Form_ID">
+      <End Role="Form_Template" EntitySet="Form_Template" />
+      <End Role="Form_Assignment" EntitySet="Form_Assignment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Input_Type_Type" Association="Self.FK_Input_Type_Type">
+      <End Role="Input_Type" EntitySet="Input_Type" />
+      <End Role="Questions" EntitySet="Questions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Patient_ID" Association="Self.FK_Patient_ID">
+      <End Role="Patient" EntitySet="Patient" />
+      <End Role="Form_Assignment" EntitySet="Form_Assignment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Patient_Patinet_ID" Association="Self.FK_Patient_Patinet_ID">
+      <End Role="Patient" EntitySet="Patient" />
+      <End Role="Medical_History" EntitySet="Medical_History" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Question_ID" Association="Self.FK_Question_ID">
+      <End Role="Questions" EntitySet="Questions" />
+      <End Role="Form_Assignment" EntitySet="Form_Assignment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Questions_Question_ID" Association="Self.FK_Questions_Question_ID">
+      <End Role="Questions" EntitySet="Questions" />
+      <End Role="Form_Template" EntitySet="Form_Template" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_User_ID" Association="Self.FK_User_User_ID">
+      <End Role="User" EntitySet="User" />
+      <End Role="Form_Assignment" EntitySet="Form_Assignment" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
